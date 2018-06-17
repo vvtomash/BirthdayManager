@@ -1,16 +1,24 @@
 <template>
     <header class="myHeader">
+        <ul class="user-info">
+            <li><router-link to="/home">{{ user.name }}</router-link></li>
+        </ul>
         <ul class="menu">
             <li v-for="link in links" v-bind:key="link.id">
-                <a :href="link.href">
-                    {{link.name}}
-                </a>
+                <router-link :to="link.href">{{ link.name }}</router-link>
             </li>
         </ul>
     </header>
 </template>
 <script>
-export default{
+import { mapState, mapActions } from 'vuex';
+
+export default {
+    created() {
+        this.getUser();
+    },
+    computed: mapState(['user']),
+    methods: mapActions(['getUser']),
     data() {
         return {
             count: 0,
@@ -26,6 +34,7 @@ export default{
 
     header.myHeader {
         min-height: 60px;
+        width: 100%;
         .circle {
             width: 60px;
             height: 60px;
@@ -34,11 +43,18 @@ export default{
             img {
                 width: 60px;
                 height: 60px;
+            }
         }
-    }
-        ul {
+        .menu {
             float: right;
             margin: 0;
+        }
+        .user_info {
+            float: left;
+            margin: 0;
+        }
+        ul {
+            float: left;
             li {
                 list-style: none;
                 display: inline-block;
@@ -48,8 +64,9 @@ export default{
                     &:hover {
                         text-decoration: none;
                         border-bottom: 2px solid #42b983;
+                    }
                 }
             }
         }
-    } }
+    }
 </style>

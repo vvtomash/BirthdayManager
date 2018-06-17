@@ -7,4 +7,12 @@ router.get('/api/firstMethod', (req, res) => {
     res.send(result);
 });
 
+router.get('/api/getUser', (req, res) => {
+    const result = {
+        id: 1,
+        name: 'admin',
+    };
+    res.send(result);
+});
+
 module.exports = router;

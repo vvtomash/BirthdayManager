@@ -16,7 +16,7 @@ import MyFooter from './pages/MyFooter.vue';
 export default{
     data() {
         return {
-            result: 'Click me',
+            result: 'Click me pls',
         };
     },
     methods: {
