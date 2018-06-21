@@ -26,7 +26,7 @@ app.use(api);
 
 app.get('*', (req, res) => {
   const fileName = 'index.html';
-  const html = fs.readFileSync(resolve(`../${fileName}`), 'utf-8');
+  const html = fs.readFileSync(resolve(`../src/${fileName}`), 'utf-8');
   res.send(html);
 });
 

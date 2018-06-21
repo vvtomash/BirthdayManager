@@ -5,6 +5,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "start": "node ./server/index",
+    "startDev": "nodemon ./server/index",
     "lint": "eslint --ext .js,.vue ."
   },
   "engines": {
@@ -14,6 +15,7 @@
   "dependencies": {
     "babel-eslint": "^7.1.1",
     "body-parser": "^1.15.2",
+    "bootstrap": "^4.1.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "mongoose": "^4.6.4",
