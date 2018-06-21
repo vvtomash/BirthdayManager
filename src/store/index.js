@@ -9,9 +9,22 @@ const mutations = {
   SET_USER: (state, user) => {
     state.user = user;
   },
+  LOGIN_USER: (state, { userId }) => {
+    state.user.userId = userId;
+  },
 };
 
 const actions = {
+  loginUser: ({ commit }, email, pass) => Vue.http.post('/api/loginUser', { email, pass })
+    .then(response => response.json())
+    .then((data) => {
+      if (data.err) {
+        throw new Error('Cant login');
+      }
+
+      commit('LOGIN_USER', { userId: data.userId });
+    }),
+
   getUser: ({ commit }) => Vue.http.get('/api/getUser')
     .then(response => response.json())
     .then((user) => {
@@ -21,7 +34,10 @@ const actions = {
 
 const store = new Vuex.Store({
   state: {
-    user: { name: '' },
+    user: { 
+      name: '',
+      userId: null,
+    },
   },
   getters,
   mutations,
