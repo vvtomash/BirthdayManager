@@ -1,18 +1,18 @@
 <template>
-    <main class="wrap">
-        <my-header></my-header>
-        <my-footer></my-footer>
-    </main>
+  <main class="wrap">
+    <custom-header/>
+    <custom-footer/>
+  </main>
 </template>
 <script>
-import MyHeader from './pages/MyHeader.vue';
-import MyFooter from './pages/MyFooter.vue';
+import CustomHeader from '../components/header.vue';
+import CustomFooter from '../components/footer.vue';
 
 export default{
-    data() {
-        return {};
-    },
-    components: { MyHeader, MyFooter },
+  components: { CustomHeader, CustomFooter },
+  data() {
+    return {};
+  },
 };
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>
