@@ -1,33 +1,35 @@
 <template>
-    <header class="myHeader">
-        <ul class="user-info">
-            <li><router-link to="/home">{{ user.name }}</router-link></li>
-        </ul>
-        <ul class="menu">
-            <li v-for="link in links" v-bind:key="link.id">
-                <router-link :to="link.href">{{ link.name }}</router-link>
-            </li>
-        </ul>
-    </header>
+  <header class="myHeader">
+    <ul class="user-info">
+      <li><router-link to="/home">{{ user.name }}</router-link></li>
+    </ul>
+    <ul class="menu">
+      <li
+        v-for="link in links"
+        :key="link.id">
+        <router-link :to="link.href">{{ link.name }}</router-link>
+      </li>
+    </ul>
+  </header>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
 
 export default {
-    created() {
-        this.getUser();
-    },
-    computed: mapState(['user']),
-    methods: mapActions(['getUser']),
-    data() {
-        return {
-            count: 0,
-            links: [
-                { id: 1, href: '/home', name: 'Home' },
-                { id: 2, href: '/login', name: 'Login' },
-            ],
-        };
-    },
+  data() {
+    return {
+      count: 0,
+      links: [
+        { id: 1, href: '/home', name: 'Home' },
+        { id: 2, href: '/login', name: 'Login' },
+      ],
+    };
+  },
+  computed: mapState(['user']),
+  created() {
+    this.getUser();
+  },
+  methods: mapActions(['getUser']),
 };
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>

@@ -1,9 +1,9 @@
 <template>
-    <footer>
-        <div class="copyright">
-            &copy;2017-2018 Tomash team
-        </div>
-    </footer>
+  <footer>
+    <div class="copyright">
+      &copy;2017-2018 Tomash team
+    </div>
+  </footer>
 </template>
 <style lang="sass" rel="stylesheet/scss" scoped>
     footer {

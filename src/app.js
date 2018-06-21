@@ -7,6 +7,6 @@ import './style/index.scss';
 
 Vue.use(VueResource);
 new Vue({
-    router,
-    store,
+  router,
+  store,
 }).$mount('#app');

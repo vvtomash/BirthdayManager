@@ -5,8 +5,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "start": "node ./server/index",
-    "lint": "eslint --ext .js,.vue .",
-    "fix": "eslint  --fix --ext .js,.vue ."
+    "lint": "eslint --ext .js,.vue ."
   },
   "engines": {
     "node": ">=6.0",
@@ -25,7 +24,8 @@
     "vue-router": "^2.0.1",
     "vue-template-compiler": "^2.1.10",
     "vuex": "^2.0.0",
-    "webpack": "^2.1.0-beta.25"
+    "webpack": "^2.1.0-beta.25",
+    "winston": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.3",
@@ -44,6 +44,7 @@
     "extract-text-webpack-plugin": "^2.0.0-beta",
     "file-loader": "^0.9.0",
     "node-sass": "^3.10.1",
+    "nodemon": "^1.17.5",
     "sass": "^0.5.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
