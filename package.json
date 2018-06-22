@@ -6,7 +6,8 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "start": "node ./server/index",
     "startDev": "nodemon ./server/index",
-    "lint": "eslint --ext .js,.vue ."
+    "lint": "eslint --ext .js,.vue .",
+    "test": "mocha"
   },
   "engines": {
     "node": ">=6.0",
@@ -45,6 +46,7 @@
     "eslint-plugin-vue": "^4.5.0",
     "extract-text-webpack-plugin": "^2.0.0-beta",
     "file-loader": "^0.9.0",
+    "mocha": "^5.2.0",
     "node-sass": "^3.10.1",
     "nodemon": "^1.17.5",
     "sass": "^0.5.0",
