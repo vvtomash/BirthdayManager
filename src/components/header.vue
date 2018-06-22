@@ -22,6 +22,7 @@ export default {
       links: [
         { id: 1, href: '/home', name: 'Home' },
         { id: 2, href: '/login', name: 'Login' },
+        { id: 3, href: '/register', name: 'Register' },
       ],
     };
   },

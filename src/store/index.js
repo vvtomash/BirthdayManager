@@ -12,10 +12,13 @@ const mutations = {
   LOGIN_USER: (state, { userId }) => {
     state.user.userId = userId;
   },
+  USER_REGISTER: (state, { user }) => {
+    state.user = user;
+  },
 };
 
 const actions = {
-  loginUser: ({ commit }, email, pass) => Vue.http.post('/api/loginUser', { email, pass })
+  loginUser: ({ commit }, email, pass) => Vue.http.post('/api/user/login', { email, pass })
     .then(response => response.json())
     .then((data) => {
       if (data.err) {
@@ -23,6 +26,16 @@ const actions = {
       }
 
       commit('LOGIN_USER', { userId: data.userId });
+    }),
+
+  registerUser: ({ commit }, user) => Vue.http.post('/api/user/register', { user })
+    .then(response => response.json())
+    .then((json) => {
+      if (json.err) {
+        throw new Error('Can\'t register');
+      }
+
+      commit('USER_REGISTER', { user: json.user });
     }),
 
   getUser: ({ commit }) => Vue.http.get('/api/getUser')
@@ -34,7 +47,7 @@ const actions = {
 
 const store = new Vuex.Store({
   state: {
-    user: { 
+    user: {
       name: '',
       userId: null,
     },
