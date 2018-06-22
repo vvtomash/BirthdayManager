@@ -1,6 +1,6 @@
 # global default
 container:
-  image: node:latest
+  image: node:8.11.0
 
 lint_task:
   node_modules_cache:
@@ -11,11 +11,6 @@ lint_task:
   test_script: npm run lint
 
 test_task:
-  container:
-    matrix:
-      image: node:latest
-      image: node:8.11.0
-
   node_modules_cache:
     folder: node_modules
     fingerprint_script: cat package.json
