@@ -34,7 +34,7 @@ const actions = {
 
 const store = new Vuex.Store({
   state: {
-    user: { 
+    user: {
       name: '',
       userId: null,
     },
