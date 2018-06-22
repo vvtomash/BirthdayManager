@@ -1,0 +1,21 @@
+# global default
+container:
+  image: node:8.11.0
+
+lint_task:
+  node_modules_cache:
+    folder: node_modules
+    fingerprint_script: cat package.json
+    populate_script: npm install
+
+  test_script: npm run lint
+
+test_task:
+  node_modules_cache:
+    folder: node_modules
+    fingerprint_script: cat package.json
+    populate_script: npm install
+
+  test_script: npm run test
+
+
