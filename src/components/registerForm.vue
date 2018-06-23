@@ -10,18 +10,11 @@
           v-validate:email="email"
           id="email"
           v-model="email"
-          :class="{ 'is-invalid': validation.email === false, 'is-valid': validation.email === true }"
           type="email"
           class="form-control"
           aria-describedby="emailHelp"
           placeholder="Enter email"
         >
-        <small
-          id="emailHelp"
-          class="form-text text-muted"
-        >
-          We'll never share your email with anyone else.
-        </small>
       </div>
 
       <div class="form-group">
@@ -30,19 +23,18 @@
           v-validate:password="pass1"
           id="password1"
           v-model="pass1"
-          :class="{ 'is-invalid': validation.pass1 === false, 'is-valid': validation.pass1 === true }"
           type="password"
           class="form-control"
           placeholder="Password"
         >
       </div>
+
       <div class="form-group">
         <label for="password2">Repeat password</label>
         <input
           v-validate:password="pass2"
           id="password2"
           v-model="pass2"
-          :class="{ 'is-invalid': validation.pass2 === false, 'is-valid': validation.pass2 === true }"
           type="password"
           class="form-control"
           placeholder="Repeat password"
@@ -79,7 +71,7 @@
 </template>
 
 <script>
-import Validation from '../logic/validation';
+import Validation from '../tools/validation';
 
 export default {
   data() {
@@ -90,21 +82,18 @@ export default {
       isLoading: false,
       message: '',
       errors: [],
-      validation: {},
     };
   },
   methods: {
     isFormValid() {
       this.errors = [];
-      if (!Validation.validateEmail(this.email)) {
-        this.errors.push('Valid email is required');
-      }
-      if (!Validation.validatePassword(this.pass1) || !Validation.validatePassword(this.pass2)) {
-        this.errors.push('Password is too short');
-      }
+      this.errors.push(Validation.validateEmail(this.email));
+      this.errors.push(Validation.validatePassword(this.pass1));
+      this.errors.push(Validation.validatePassword(this.pass2));
       if (this.pass1 !== this.pass2) {
         this.errors.push('Password mismatch');
       }
+      this.errors = this.errors.filter(v => v !== null);
 
       return this.errors.length === 0;
     },
