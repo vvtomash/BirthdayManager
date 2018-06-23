@@ -7,8 +7,10 @@
       <div class="form-group">
         <label for="email">Email address</label>
         <input
+          v-validate:email="email"
           id="email"
           v-model="email"
+          :class="{ 'is-invalid': validation.email === false, 'is-valid': validation.email === true }"
           type="email"
           class="form-control"
           aria-describedby="emailHelp"
@@ -25,8 +27,10 @@
       <div class="form-group">
         <label for="password1">Password</label>
         <input
+          v-validate:password="pass1"
           id="password1"
           v-model="pass1"
+          :class="{ 'is-invalid': validation.pass1 === false, 'is-valid': validation.pass1 === true }"
           type="password"
           class="form-control"
           placeholder="Password"
@@ -35,8 +39,10 @@
       <div class="form-group">
         <label for="password2">Repeat password</label>
         <input
+          v-validate:password="pass2"
           id="password2"
           v-model="pass2"
+          :class="{ 'is-invalid': validation.pass2 === false, 'is-valid': validation.pass2 === true }"
           type="password"
           class="form-control"
           placeholder="Repeat password"
@@ -73,8 +79,7 @@
 </template>
 
 <script>
-const MIN_PASSWORD_LENGTH = 5;
-const EMAIL_CHECK = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+import Validation from '../logic/validation';
 
 export default {
   data() {
@@ -85,16 +90,17 @@ export default {
       isLoading: false,
       message: '',
       errors: [],
+      validation: {},
     };
   },
   methods: {
     isFormValid() {
       this.errors = [];
-      if (!this.isEmailValid(this.email)) {
+      if (!Validation.validateEmail(this.email)) {
         this.errors.push('Valid email is required');
       }
-      if (this.pass1.length < MIN_PASSWORD_LENGTH || this.pass2.length < MIN_PASSWORD_LENGTH) {
-        this.errors.push(`Password should contain minimum ${MIN_PASSWORD_LENGTH} symbols`);
+      if (!Validation.validatePassword(this.pass1) || !Validation.validatePassword(this.pass2)) {
+        this.errors.push('Password is too short');
       }
       if (this.pass1 !== this.pass2) {
         this.errors.push('Password mismatch');
@@ -118,10 +124,6 @@ export default {
         .finally(() => {
           this.isLoading = false;
         });
-    },
-
-    isEmailValid(email) {
-      return EMAIL_CHECK.test(email);
     },
   },
 };
