@@ -1,5 +1,6 @@
 <template>
   <main class="wrap">
+    <custom-loader :is-loading="false"/>
     <custom-header/>
     <custom-footer/>
   </main>
@@ -7,9 +8,10 @@
 <script>
 import CustomHeader from '../components/header.vue';
 import CustomFooter from '../components/footer.vue';
+import CustomLoader from '../components/loader.vue';
 
 export default{
-  components: { CustomHeader, CustomFooter },
+  components: { CustomHeader, CustomFooter, CustomLoader },
   data() {
     return {};
   },
