@@ -4,27 +4,41 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  name: String,
-  pwd: String,
+  email: {
+    type: String,
+    required: true,
+    unique: 1,
+  },
+  name: {
+    type: String,
+  },
+  pass: {
+    type: String,
+    required: true,
+  },
+  birthday: {
+    type: Date,
+  },
+  createAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
-
-userSchema.query.byName = function (name) {
-  return this.where({ name: new RegExp(name, 'i') });
-};
 
 const Models = {
   User: mongoose.model('User', userSchema),
   initialized: true,
 };
 
-mongoose.connect('mongodb://127.0.0.1/BM');
+mongoose.connect('mongodb://127.0.0.1:27017/BM', { useNewUrlParser: true });
 if (process.env.ENV_NODE !== 'production') {
   mongoose.set('debug', true);
 }
 
 const db = mongoose.connection;
 
-db.on('error', () => {
+db.on('error', (err) => {
+  console.log(err);
   console.log('Database connection error.');
 });
 

@@ -6,7 +6,6 @@ export default {
     if (!rule) {
       throw new Error(`Internal error: no validator ${type}`);
     }
-
     return rule.isValid(value) ? null : rule.message;
   },
 
@@ -16,5 +15,9 @@ export default {
 
   validatePassword(value) {
     return this.isValid('password', value);
+  },
+
+  validateDate(value) {
+    return this.isValid('date', value);
   },
 };
