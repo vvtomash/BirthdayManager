@@ -49,7 +49,7 @@
           v-model="birthday"
           type="text"
           class="form-control"
-          placeholder="Your birthday?"
+          placeholder="Your birthday? yyyy-mm-dd"
         >
       </div>
 
@@ -117,7 +117,7 @@ export default {
         return;
       }
       this.isLoading = true;
-      this.$store.dispatch('registerUser', { email: this.email, pass: this.pass1 })
+      this.$store.dispatch('registerUser', { email: this.email, pass: this.pass1, birthday: this.birthday })
         .then(() => {
           this.message = 'Success';
         })
