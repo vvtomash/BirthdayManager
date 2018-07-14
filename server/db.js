@@ -18,7 +18,7 @@ const userSchema = new Schema({
   name: {
     type: String,
   },
-  pass: {
+  password: {
     type: String,
     required: true,
     set: encryptPass,
