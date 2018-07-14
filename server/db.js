@@ -1,7 +1,13 @@
-/* eslint-disable no-console */
 const mongoose = require('mongoose');
+const crypto = require('crypto');
 
 const { Schema } = mongoose;
+
+const SALT_PASS = 'NUs6x8nx39hdnxaJDu';
+
+function encryptPass(password) {
+  return crypto.createHash('md5').update(password + SALT_PASS).digest('hex');
+}
 
 const userSchema = new Schema({
   email: {
@@ -15,6 +21,7 @@ const userSchema = new Schema({
   pass: {
     type: String,
     required: true,
+    set: encryptPass,
   },
   birthday: {
     type: Date,

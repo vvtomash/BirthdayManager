@@ -36,16 +36,14 @@ router.post('/user/login', (req, res) => {
 });
 
 router.use((err, req, res, next) => {
-  if (err) {
-    console.log(`API error: ${err.toString()}`);
-    if (err.stack) {
-      console.log(err.stack);
-    }
-    res.status(500);
-    res.send({
-      errors: [err.toString()],
-    });
+  console.log(`API error: ${err.toString()}`);
+  if (err.stack) {
+    console.log(err.stack);
   }
+  res.status(500);
+  res.send({
+    errors: [err.toString()],
+  });
 });
 
 module.exports = router;
