@@ -15,6 +15,17 @@ router.get('/getUser', (req, res, next) => {
     });
 });
 
+router.get('/getBirthdays', (req, res, next) => {
+  db.User.find()
+    .byName('admin')
+    .exec((err, user) => {
+      if (err) {
+        next(err);
+      }
+      res.send(user);
+    });
+});
+
 router.post('/loginUser', (req, res) => {
   const result = {
     id: 1,

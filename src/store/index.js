@@ -9,6 +9,9 @@ const mutations = {
   SET_USER: (state, user) => {
     state.user = user;
   },
+  GET_BIRTHDAYS: (state, users) => {
+    state.users = users;
+  },
   LOGIN_USER: (state, { userId }) => {
     state.user.userId = userId;
   },
@@ -42,6 +45,12 @@ const actions = {
     .then(response => response.json())
     .then((user) => {
       commit('SET_USER', user);
+    }),
+
+  getBirthdays: ({ commit }) => Vue.http.get('api/getBirthdays')
+    .then(response => response.json())
+    .then((users) => {
+      commit('GET_BIRTHDAYS', users);
     }),
 };
 
