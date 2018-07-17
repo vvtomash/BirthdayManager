@@ -41,6 +41,18 @@
         >
       </div>
 
+      <div class="form-group">
+        <label for="birthday">Birthday</label>
+        <input
+          v-validate:date="birthday"
+          id="birthday"
+          v-model="birthday"
+          type="text"
+          class="form-control"
+          placeholder="Your birthday? yyyy-mm-dd"
+        >
+      </div>
+
       <div>
         <div v-if="errors.length">
           <div
@@ -79,6 +91,7 @@ export default {
       email: '',
       pass1: '',
       pass2: '',
+      birthday: '',
       isLoading: false,
       message: '',
       errors: [],
@@ -90,6 +103,7 @@ export default {
       this.errors.push(Validation.validateEmail(this.email));
       this.errors.push(Validation.validatePassword(this.pass1));
       this.errors.push(Validation.validatePassword(this.pass2));
+      this.errors.push(Validation.validateDate(this.birthday));
       if (this.pass1 !== this.pass2) {
         this.errors.push('Password mismatch');
       }
@@ -103,7 +117,7 @@ export default {
         return;
       }
       this.isLoading = true;
-      this.$store.dispatch('registerUser', { email: this.email, pass: this.pass1 })
+      this.$store.dispatch('registerUser', { email: this.email, pass: this.pass1, birthday: this.birthday })
         .then(() => {
           this.message = 'Success';
         })
