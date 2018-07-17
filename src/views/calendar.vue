@@ -53,7 +53,7 @@ export default {
       users.map(user => this.state.highlighted.dates.push(new Date(user.birthday)));
     },
   },
-}
+};
 </script>
 
 <style scoped>

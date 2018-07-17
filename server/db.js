@@ -37,7 +37,7 @@ userSchema.query.byName = function (name) {
 };
 
 userSchema.query.allBirthdays = function () {
-  return this.where({birthday: {$exists: true}});
+  return this.where({ birthday: { $exists: true } });
 };
 
 const Models = {
