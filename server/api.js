@@ -17,12 +17,12 @@ router.get('/getUser', (req, res, next) => {
 
 router.get('/getBirthdays', (req, res, next) => {
   db.User.find()
-    .byName('admin')
-    .exec((err, user) => {
+    .allBirthdays()
+    .exec((err, users) => {
       if (err) {
         next(err);
       }
-      res.send(user);
+      res.send(users);
     });
 });
 

@@ -10,14 +10,16 @@
         :monday-first="true"
         :highlighted="state.highlighted" />
     </div>
-    <p
-      @click="fillCalendar"
-      class="calendar__note">
+    <p class="calendar__note">
       This calendar works in test mode. So it could miss your birthday!
     </p>
+    <div class="calendar__wrapper">
+      <button
+        class="calendar__button"
+        @click="fillCalendar">Fill</button>
+    </div>
     <custom-footer/>
   </main>
-</template>
 </template>
 
 <script>
@@ -32,7 +34,6 @@ export default {
       state: {
         highlighted: {
           dates: [
-            // ...this.fillCalendar(),
             new Date(2018, 6, 27),
             new Date(2018, 6, 30),
           ],
@@ -42,13 +43,14 @@ export default {
   },
   methods: {
     fillCalendar() {
-      let users = {};
+      let users = [];
       this.$store.dispatch('getBirthdays')
         .then((response) => {
           users = response;
         })
         .catch(() =>
           new Error('No dates, only pain!'));
+      users.map(user => this.state.highlighted.dates.push(new Date(user.birthday)));
     },
   },
 }
@@ -71,5 +73,17 @@ export default {
     font-size: 18px;
     text-align: center;
   }
-
+  .calendar__button {
+    width: 100px;
+    height: 30px;
+    background: #ff6666;
+    color: white;
+    font-size: 20px;
+    border-radius: 15px;
+    text-align: center;
+  }
+  .calendar__wrapper {
+    display: flex;
+    justify-content: center;
+  }
 </style>

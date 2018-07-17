@@ -12,6 +12,10 @@ userSchema.query.byName = function (name) {
   return this.where({ name: new RegExp(name, 'i') });
 };
 
+userSchema.query.allBirthdays = function () {
+  return this.where({birthday: {$exists: true}});
+};
+
 const Models = {
   User: mongoose.model('User', userSchema),
   initialized: true,
